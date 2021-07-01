@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import ServiceCard from "../components/ServiceCard";
 import { Service } from "../types";
-const About: NextPage<Service[]> = ({ services }) => {
+const About: NextPage<{ services: Service[] }> = ({ services }) => {
   return (
     <div className="flex flex-col flex-grow px-6 pt-1">
       <h6 className="my-3 text-base font-medium">
