@@ -1,6 +1,7 @@
 import { NextPage } from "next";
-
-const About: NextPage = () => {
+import ServiceCard from "../components/ServiceCard";
+import { Service } from "../types";
+const About: NextPage<Service[]> = ({ services }) => {
   return (
     <div className="flex flex-col flex-grow px-6 pt-1">
       <h6 className="my-3 text-base font-medium">
@@ -17,12 +18,14 @@ const About: NextPage = () => {
           What I am doing
         </h4>
         <div className="grid gap-6 my-3 md:grid-cols-2">
-          {/* {services.map((service) => (
+          {services.map((service: Service) => (
             <div
               className="col-span-2 p-2 bg-gray-200 rounded-lg dark:bg-dark-200 md:col-span-1"
               key={service.title}
-            ></div>
-          ))} */}
+            >
+              <ServiceCard service={service} />
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -31,6 +34,10 @@ const About: NextPage = () => {
 
 export const getStaticProps = async (context) => {
   const res = await fetch("http://localhost:3000/api/services");
+  const { services } = await res.json();
+  return {
+    props: { services },
+  };
 };
 
 export default About;
