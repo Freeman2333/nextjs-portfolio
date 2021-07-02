@@ -11,8 +11,10 @@ const Bar: FunctionComponent<{ value: Skill }> = ({
         className="flex items-center px-4 py-1 rounded-full bg-gradient-to-r from-green to-blue-500"
         style={{ width: bar_width }}
       >
-        <Icon className="mr-3" /> {name}
+        {Icon&&(<Icon className="mr-3" />)} {name}
       </div>
     </div>
   );
 };
+
+export default Bar;
